@@ -1,0 +1,195 @@
+{
+	"groups": [
+		{
+			"keys": "bg_jpg,description_json,idle04_png,idle05_png,idle06_png,idle07_png,idle08_png,idle01_png,idle02_png,idle03_png,run04_png,run05_png,run06_png,run07_png,run08_png,run01_png,run02_png,run03_png,road_jpg,block_jpg,madoka01_png,madoka02_png,madoka03_png,senpai01_png,senpai02_png,senpai03_png,senpai04_png,senpai05_png,senpai06_png,senpai07_png,madoka08_png,madoka04_png,madoka05_png,madoka06_png,madoka07_png,questionMark_png,exclamationPoint_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "bg_jpg",
+			"type": "image",
+			"url": "assets/bg.jpg"
+		},
+		{
+			"name": "description_json",
+			"type": "json",
+			"url": "config/description.json"
+		},
+		{
+			"name": "idle04_png",
+			"type": "image",
+			"url": "assets/idle04.png"
+		},
+		{
+			"name": "idle05_png",
+			"type": "image",
+			"url": "assets/idle05.png"
+		},
+		{
+			"name": "idle06_png",
+			"type": "image",
+			"url": "assets/idle06.png"
+		},
+		{
+			"name": "idle07_png",
+			"type": "image",
+			"url": "assets/idle07.png"
+		},
+		{
+			"name": "idle08_png",
+			"type": "image",
+			"url": "assets/idle08.png"
+		},
+		{
+			"name": "idle01_png",
+			"type": "image",
+			"url": "assets/idle01.png"
+		},
+		{
+			"name": "idle02_png",
+			"type": "image",
+			"url": "assets/idle02.png"
+		},
+		{
+			"name": "idle03_png",
+			"type": "image",
+			"url": "assets/idle03.png"
+		},
+		{
+			"name": "run04_png",
+			"type": "image",
+			"url": "assets/run04.png"
+		},
+		{
+			"name": "run05_png",
+			"type": "image",
+			"url": "assets/run05.png"
+		},
+		{
+			"name": "run06_png",
+			"type": "image",
+			"url": "assets/run06.png"
+		},
+		{
+			"name": "run07_png",
+			"type": "image",
+			"url": "assets/run07.png"
+		},
+		{
+			"name": "run08_png",
+			"type": "image",
+			"url": "assets/run08.png"
+		},
+		{
+			"name": "run01_png",
+			"type": "image",
+			"url": "assets/run01.png"
+		},
+		{
+			"name": "run02_png",
+			"type": "image",
+			"url": "assets/run02.png"
+		},
+		{
+			"name": "run03_png",
+			"type": "image",
+			"url": "assets/run03.png"
+		},
+		{
+			"name": "road_jpg",
+			"type": "image",
+			"url": "assets/road.jpg"
+		},
+		{
+			"name": "block_jpg",
+			"type": "image",
+			"url": "assets/block.jpg"
+		},
+		{
+			"name": "madoka01_png",
+			"type": "image",
+			"url": "assets/madoka01.png"
+		},
+		{
+			"name": "madoka02_png",
+			"type": "image",
+			"url": "assets/madoka02.png"
+		},
+		{
+			"name": "madoka03_png",
+			"type": "image",
+			"url": "assets/madoka03.png"
+		},
+		{
+			"name": "senpai01_png",
+			"type": "image",
+			"url": "assets/senpai01.png"
+		},
+		{
+			"name": "senpai02_png",
+			"type": "image",
+			"url": "assets/senpai02.png"
+		},
+		{
+			"name": "senpai03_png",
+			"type": "image",
+			"url": "assets/senpai03.png"
+		},
+		{
+			"name": "senpai04_png",
+			"type": "image",
+			"url": "assets/senpai04.png"
+		},
+		{
+			"name": "senpai05_png",
+			"type": "image",
+			"url": "assets/senpai05.png"
+		},
+		{
+			"name": "senpai06_png",
+			"type": "image",
+			"url": "assets/senpai06.png"
+		},
+		{
+			"name": "senpai07_png",
+			"type": "image",
+			"url": "assets/senpai07.png"
+		},
+		{
+			"name": "madoka08_png",
+			"type": "image",
+			"url": "assets/madoka08.png"
+		},
+		{
+			"name": "madoka04_png",
+			"type": "image",
+			"url": "assets/madoka04.png"
+		},
+		{
+			"name": "madoka05_png",
+			"type": "image",
+			"url": "assets/madoka05.png"
+		},
+		{
+			"name": "madoka06_png",
+			"type": "image",
+			"url": "assets/madoka06.png"
+		},
+		{
+			"name": "madoka07_png",
+			"type": "image",
+			"url": "assets/madoka07.png"
+		},
+		{
+			"name": "questionMark_png",
+			"type": "image",
+			"url": "assets/questionMark.png"
+		},
+		{
+			"name": "exclamationPoint_png",
+			"type": "image",
+			"url": "assets/exclamationPoint.png"
+		}
+	]
+}
