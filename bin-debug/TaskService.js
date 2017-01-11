@@ -69,11 +69,13 @@ var TaskService = (function (_super) {
         return rule(this.taskList);
     };
     p.getCurrentId = function () {
-        return "00" + this._currentTask.toString();
+        return NumberToString.numberToString(this._currentTask);
+        //return "00" + this._currentTask.toString();
     };
     p.getNextId = function () {
-        var temp = this._currentTask + 1;
-        return "00" + temp.toString();
+        //var temp = this._currentTask + 1;
+        //console.log("a:" + "00" + temp.toString() + "b" + NumberToString.numberToString(temp));
+        return NumberToString.numberToString(this._currentTask + 1);
     };
     p.submit = function (id) {
         if (!id) {
@@ -88,7 +90,10 @@ var TaskService = (function (_super) {
             task.status = TaskStatus.SUBMITTED;
             task.onAccept();
             this.notify(task);
-            this._currentTask++;
+            if (parseInt(task.id) < this.taskAllNumber - 1) {
+                this._currentTask++;
+                this.taskList[this.getCurrentId()].status = TaskStatus.ACCEPTABLE;
+            }
             return ErrorCode.SUCCESS;
         }
         else {
@@ -128,44 +133,12 @@ var TaskService = (function (_super) {
         }
     );
     p.getTask = function (num) {
-        var temp = "00" + num.toString();
-        return this.taskList[temp];
+        //var temp: string = "00" + num.toString();
+        //console.log("temp:" + temp + ", function" + NumberToString.numberToString(num))
+        return this.taskList[NumberToString.numberToString(num)];
     };
     TaskService.count = 0;
     return TaskService;
 }(EventEmitter));
 egret.registerClass(TaskService,'TaskService');
-var TaskSystem = (function (_super) {
-    __extends(TaskSystem, _super);
-    function TaskSystem() {
-        _super.call(this);
-        var NPC1x = 0;
-        var NPC1y = 300;
-        var NPC2x = 400;
-        var NPC2y = 300;
-        //var taskService:TaskService = new TaskService();       
-        var task_2 = new Task("000", "task2", "press button to kill monsters", "npc_0", "npc_1", new KillMonsterTaskCondition());
-        //task_2.status = TaskStatus.UNACCEPTABLE;
-        task_2.total = 10;
-        TaskService.getInstance().addTask(task_2);
-        var task_1 = new Task("001", "task1", "press NPC1 to finish task", "npc_0", "npc_1", new NPCTalkTaskCondition());
-        task_1.status = TaskStatus.ACCEPTABLE;
-        TaskService.getInstance().addTask(task_1);
-        var NPC_1 = new NPC("npc_0", "madoka", 8, NPC1x, NPC1y, "press the button \nto get task");
-        var NPC_2 = new NPC("npc_1", "senpai", 7, NPC2x, NPC2y, "press the button \nif you finish task");
-        var taskPanel = new TaskPanel(20, NPC2y + 500);
-        var monsterButton = new MockKillMonsterBotton();
-        TaskService.getInstance().addObserver(taskPanel);
-        TaskService.getInstance().addObserver(NPC_1);
-        TaskService.getInstance().addObserver(NPC_2);
-        TaskService.getInstance().addObserver(monsterButton);
-        this.addChild(taskPanel);
-        this.addChild(NPC_1);
-        this.addChild(NPC_2);
-        this.addChild(monsterButton);
-    }
-    var d = __define,c=TaskSystem,p=c.prototype;
-    return TaskSystem;
-}(egret.DisplayObjectContainer));
-egret.registerClass(TaskSystem,'TaskSystem');
 //# sourceMappingURL=TaskService.js.map

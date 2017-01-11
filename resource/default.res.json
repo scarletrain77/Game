@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,description_json,idle04_png,idle05_png,idle06_png,idle07_png,idle08_png,idle01_png,idle02_png,idle03_png,run04_png,run05_png,run06_png,run07_png,run08_png,run01_png,run02_png,run03_png,road_jpg,block_jpg,madoka01_png,madoka02_png,madoka03_png,senpai01_png,senpai02_png,senpai03_png,senpai04_png,senpai05_png,senpai06_png,senpai07_png,madoka08_png,madoka04_png,madoka05_png,madoka06_png,madoka07_png,questionMark_png,exclamationPoint_png",
+			"keys": "bg_jpg,description_json,road_jpg,block_jpg,senpai01_png,senpai02_png,senpai03_png,senpai04_png,senpai05_png,senpai06_png,senpai07_png,questionMark_png,exclamationPoint_png,jewel_png,equipment_png,hero_png,homuraidle01_png,homuraidle02_png,homuraidle03_png,homuraidle04_png,homuraidle05_png,homuraidle06_png,homuraidle07_png,homuraidle08_png,homurarun01_png,homurarun02_png,homurarun03_png,homurarun04_png,homurarun05_png,homurarun06_png,homurarun07_png,homurarun08_png,homura_png,sayaka02_png,sayaka03_png,sayaka04_png,sayaka05_png,sayaka01_png,madoka012_png,madoka022_png,madoka032_png,madoka042_png,madoka052_png,madoka062_png,madoka072_png,madoka082_png,madoka08_png,madoka01_png,madoka02_png,madoka03_png,madoka04_png,madoka05_png,madoka06_png,madoka07_png,QB07_png,QB08_png,QB09_png,QB10_png,QB11_png,QB01_png,QB02_png,QB03_png,QB04_png,QB05_png,QB06_png,homuraattack04_png,homuraattack05_png,homuraattack06_png,homuraattack07_png,homuraattack08_png,homuraattack01_png,homuraattack02_png,homuraattack03_png",
 			"name": "preload"
 		}
 	],
@@ -17,86 +17,6 @@
 			"url": "config/description.json"
 		},
 		{
-			"name": "idle04_png",
-			"type": "image",
-			"url": "assets/idle04.png"
-		},
-		{
-			"name": "idle05_png",
-			"type": "image",
-			"url": "assets/idle05.png"
-		},
-		{
-			"name": "idle06_png",
-			"type": "image",
-			"url": "assets/idle06.png"
-		},
-		{
-			"name": "idle07_png",
-			"type": "image",
-			"url": "assets/idle07.png"
-		},
-		{
-			"name": "idle08_png",
-			"type": "image",
-			"url": "assets/idle08.png"
-		},
-		{
-			"name": "idle01_png",
-			"type": "image",
-			"url": "assets/idle01.png"
-		},
-		{
-			"name": "idle02_png",
-			"type": "image",
-			"url": "assets/idle02.png"
-		},
-		{
-			"name": "idle03_png",
-			"type": "image",
-			"url": "assets/idle03.png"
-		},
-		{
-			"name": "run04_png",
-			"type": "image",
-			"url": "assets/run04.png"
-		},
-		{
-			"name": "run05_png",
-			"type": "image",
-			"url": "assets/run05.png"
-		},
-		{
-			"name": "run06_png",
-			"type": "image",
-			"url": "assets/run06.png"
-		},
-		{
-			"name": "run07_png",
-			"type": "image",
-			"url": "assets/run07.png"
-		},
-		{
-			"name": "run08_png",
-			"type": "image",
-			"url": "assets/run08.png"
-		},
-		{
-			"name": "run01_png",
-			"type": "image",
-			"url": "assets/run01.png"
-		},
-		{
-			"name": "run02_png",
-			"type": "image",
-			"url": "assets/run02.png"
-		},
-		{
-			"name": "run03_png",
-			"type": "image",
-			"url": "assets/run03.png"
-		},
-		{
 			"name": "road_jpg",
 			"type": "image",
 			"url": "assets/road.jpg"
@@ -105,21 +25,6 @@
 			"name": "block_jpg",
 			"type": "image",
 			"url": "assets/block.jpg"
-		},
-		{
-			"name": "madoka01_png",
-			"type": "image",
-			"url": "assets/madoka01.png"
-		},
-		{
-			"name": "madoka02_png",
-			"type": "image",
-			"url": "assets/madoka02.png"
-		},
-		{
-			"name": "madoka03_png",
-			"type": "image",
-			"url": "assets/madoka03.png"
 		},
 		{
 			"name": "senpai01_png",
@@ -157,9 +62,159 @@
 			"url": "assets/senpai07.png"
 		},
 		{
+			"name": "questionMark_png",
+			"type": "image",
+			"url": "assets/questionMark.png"
+		},
+		{
+			"name": "exclamationPoint_png",
+			"type": "image",
+			"url": "assets/exclamationPoint.png"
+		},
+		{
+			"name": "jewel_png",
+			"type": "image",
+			"url": "assets/jewel.png"
+		},
+		{
+			"name": "equipment_png",
+			"type": "image",
+			"url": "assets/equipment.png"
+		},
+		{
+			"name": "hero_png",
+			"type": "image",
+			"url": "assets/hero.png"
+		},
+		{
+			"name": "homuraidle01_png",
+			"type": "image",
+			"url": "assets/homuraidle01.png"
+		},
+		{
+			"name": "homuraidle02_png",
+			"type": "image",
+			"url": "assets/homuraidle02.png"
+		},
+		{
+			"name": "homuraidle03_png",
+			"type": "image",
+			"url": "assets/homuraidle03.png"
+		},
+		{
+			"name": "homuraidle04_png",
+			"type": "image",
+			"url": "assets/homuraidle04.png"
+		},
+		{
+			"name": "homuraidle05_png",
+			"type": "image",
+			"url": "assets/homuraidle05.png"
+		},
+		{
+			"name": "homuraidle06_png",
+			"type": "image",
+			"url": "assets/homuraidle06.png"
+		},
+		{
+			"name": "homuraidle07_png",
+			"type": "image",
+			"url": "assets/homuraidle07.png"
+		},
+		{
+			"name": "homuraidle08_png",
+			"type": "image",
+			"url": "assets/homuraidle08.png"
+		},
+		{
+			"name": "homurarun01_png",
+			"type": "image",
+			"url": "assets/homurarun01.png"
+		},
+		{
+			"name": "homurarun02_png",
+			"type": "image",
+			"url": "assets/homurarun02.png"
+		},
+		{
+			"name": "homurarun03_png",
+			"type": "image",
+			"url": "assets/homurarun03.png"
+		},
+		{
+			"name": "homurarun04_png",
+			"type": "image",
+			"url": "assets/homurarun04.png"
+		},
+		{
+			"name": "homurarun05_png",
+			"type": "image",
+			"url": "assets/homurarun05.png"
+		},
+		{
+			"name": "homurarun06_png",
+			"type": "image",
+			"url": "assets/homurarun06.png"
+		},
+		{
+			"name": "homurarun07_png",
+			"type": "image",
+			"url": "assets/homurarun07.png"
+		},
+		{
+			"name": "homurarun08_png",
+			"type": "image",
+			"url": "assets/homurarun08.png"
+		},
+		{
+			"name": "homura_png",
+			"type": "image",
+			"url": "assets/homura.png"
+		},
+		{
+			"name": "sayaka02_png",
+			"type": "image",
+			"url": "assets/sayaka02.png"
+		},
+		{
+			"name": "sayaka03_png",
+			"type": "image",
+			"url": "assets/sayaka03.png"
+		},
+		{
+			"name": "sayaka04_png",
+			"type": "image",
+			"url": "assets/sayaka04.png"
+		},
+		{
+			"name": "sayaka05_png",
+			"type": "image",
+			"url": "assets/sayaka05.png"
+		},
+		{
+			"name": "sayaka01_png",
+			"type": "image",
+			"url": "assets/sayaka01.png"
+		},
+		{
 			"name": "madoka08_png",
 			"type": "image",
 			"url": "assets/madoka08.png"
+		},
+		{
+			"name": "madoka01_png",
+			"type": "image",
+			"url": "assets/madoka01.png"
+		},
+		{
+			"name": "madoka02_png",
+			"type": "image",
+			"url": "assets/madoka02.png"
+		},
+		{
+			"name": "madoka03_png",
+			"type": "image",
+			"url": "assets/madoka03.png"
 		},
 		{
 			"name": "madoka04_png",
@@ -182,14 +237,99 @@
 			"url": "assets/madoka07.png"
 		},
 		{
-			"name": "questionMark_png",
+			"name": "QB07_png",
 			"type": "image",
-			"url": "assets/questionMark.png"
+			"url": "assets/QB07.png"
 		},
 		{
-			"name": "exclamationPoint_png",
+			"name": "QB08_png",
 			"type": "image",
-			"url": "assets/exclamationPoint.png"
+			"url": "assets/QB08.png"
+		},
+		{
+			"name": "QB09_png",
+			"type": "image",
+			"url": "assets/QB09.png"
+		},
+		{
+			"name": "QB10_png",
+			"type": "image",
+			"url": "assets/QB10.png"
+		},
+		{
+			"name": "QB11_png",
+			"type": "image",
+			"url": "assets/QB11.png"
+		},
+		{
+			"name": "QB01_png",
+			"type": "image",
+			"url": "assets/QB01.png"
+		},
+		{
+			"name": "QB02_png",
+			"type": "image",
+			"url": "assets/QB02.png"
+		},
+		{
+			"name": "QB03_png",
+			"type": "image",
+			"url": "assets/QB03.png"
+		},
+		{
+			"name": "QB04_png",
+			"type": "image",
+			"url": "assets/QB04.png"
+		},
+		{
+			"name": "QB05_png",
+			"type": "image",
+			"url": "assets/QB05.png"
+		},
+		{
+			"name": "QB06_png",
+			"type": "image",
+			"url": "assets/QB06.png"
+		},
+		{
+			"name": "homuraattack04_png",
+			"type": "image",
+			"url": "assets/homuraattack04.png"
+		},
+		{
+			"name": "homuraattack05_png",
+			"type": "image",
+			"url": "assets/homuraattack05.png"
+		},
+		{
+			"name": "homuraattack06_png",
+			"type": "image",
+			"url": "assets/homuraattack06.png"
+		},
+		{
+			"name": "homuraattack07_png",
+			"type": "image",
+			"url": "assets/homuraattack07.png"
+		},
+		{
+			"name": "homuraattack08_png",
+			"type": "image",
+			"url": "assets/homuraattack08.png"
+		},
+		{
+			"name": "homuraattack01_png",
+			"type": "image",
+			"url": "assets/homuraattack01.png"
+		},
+		{
+			"name": "homuraattack02_png",
+			"type": "image",
+			"url": "assets/homuraattack02.png"
+		},
+		{
+			"name": "homuraattack03_png",
+			"type": "image",
+			"url": "assets/homuraattack03.png"
 		}
 	]
 }

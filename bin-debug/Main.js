@@ -81,16 +81,54 @@ var Main = (function (_super) {
         sky.height = stageH;
         //TileMapSuccess
         //this.addChild(new TileMap());
-        this.addChild(new TaskSystem());
+        //TaskSystem without UserPanel
+        //this.addChild(new TaskSystem());
+        //this.addChild(new UserSystem());
         var scene = new GameScene();
         GameScene.replaceScene(scene);
+        this.addChild(scene);
         var list = new CommandList();
+        GameScene.getCurrentScene().userSystem.tileMap.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (GameScene.getCurrentScene().userSystem.NPC_0.getDialogPanelState() == false) {
+                list.addCommand(new WalkCommand(e.stageX, e.stageY));
+                list.execute();
+            }
+        }, this);
+        GameScene.getCurrentScene().userSystem.NPC_0.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            UserSystem.currentNPC = GameScene.getCurrentScene().userSystem.NPC_0;
+            list.addCommand(new WalkCommand(e.stageX, e.stageY));
+            list.addCommand(new TalkCommand());
+            list.execute();
+        }, this);
+        GameScene.getCurrentScene().userSystem.NPC_1.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            UserSystem.currentNPC = GameScene.getCurrentScene().userSystem.NPC_1;
+            list.addCommand(new WalkCommand(e.stageX, e.stageY));
+            list.addCommand(new TalkCommand());
+            list.execute();
+        }, this);
+        GameScene.getCurrentScene().userSystem.monster.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            list.addCommand(new WalkCommand(e.stageX, e.stageY));
+            list.addCommand(new FightCommand());
+            list.execute();
+        }, this);
+        GameScene.getCurrentScene().userSystem.equipmentButton.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            list.addCommand(new WalkCommand(e.stageX, e.stageY));
+            list.addCommand(new EquipmentCommand());
+            list.execute();
+        }, this);
+        /*var button = new Button(100, 100, "add");
+        button.addEventListener(egret.TouchEvent.TOUCH_TAP, (e) => {
+            console.log("add");
+            GameScene.getCurrentScene().userSystem.user.defaultHero.addEquipment(new Equipment("C", 100, 100, 100));
+            GameScene.getCurrentScene().userSystem.userPanel.updateUserinfo();
+        }, this);
+        this.addChild(button);
+
         list.addCommand(new WalkCommand(1, 1));
         list.addCommand(new FightCommand());
         list.addCommand(new WalkCommand(3, 3));
         list.addCommand(new TalkCommand());
-        list.addCommand(new WalkCommand(5, 5));
-        list.execute();
+        list.addCommand(new WalkCommand(5, 5));*/
         /*egret.setTimeout(function () {
             list.cancel();
             list.addCommand(new WalkCommand(5, 5))

@@ -1,138 +1,66 @@
 // TypeScript file
 var TileMap = (function (_super) {
     __extends(TileMap, _super);
-    function TileMap() {
-        var _this = this;
+    function TileMap(user, userPanel) {
         _super.call(this);
+        this._tiles = [];
         //地图行列数
         this._column = 10;
         this._row = 10;
-        this._config = [
-            { x: 0, y: 0, walkable: true, image: "road_jpg" },
-            { x: 1, y: 0, walkable: true, image: "road_jpg" },
-            { x: 2, y: 0, walkable: true, image: "road_jpg" },
-            { x: 3, y: 0, walkable: true, image: "road_jpg" },
-            { x: 4, y: 0, walkable: true, image: "road_jpg" },
-            { x: 5, y: 0, walkable: true, image: "road_jpg" },
-            { x: 6, y: 0, walkable: true, image: "road_jpg" },
-            { x: 7, y: 0, walkable: true, image: "road_jpg" },
-            { x: 8, y: 0, walkable: true, image: "road_jpg" },
-            { x: 9, y: 0, walkable: true, image: "road_jpg" },
-            { x: 0, y: 1, walkable: true, image: "road_jpg" },
-            { x: 1, y: 1, walkable: true, image: "road_jpg" },
-            { x: 2, y: 1, walkable: true, image: "road_jpg" },
-            { x: 3, y: 1, walkable: true, image: "road_jpg" },
-            { x: 4, y: 1, walkable: true, image: "road_jpg" },
-            { x: 5, y: 1, walkable: true, image: "road_jpg" },
-            { x: 6, y: 1, walkable: false, image: "block_jpg" },
-            { x: 7, y: 1, walkable: true, image: "road_jpg" },
-            { x: 8, y: 1, walkable: true, image: "road_jpg" },
-            { x: 9, y: 1, walkable: true, image: "road_jpg" },
-            { x: 0, y: 2, walkable: true, image: "road_jpg" },
-            { x: 1, y: 2, walkable: true, image: "road_jpg" },
-            { x: 2, y: 2, walkable: true, image: "road_jpg" },
-            { x: 3, y: 2, walkable: true, image: "road_jpg" },
-            { x: 4, y: 2, walkable: true, image: "road_jpg" },
-            { x: 5, y: 2, walkable: true, image: "road_jpg" },
-            { x: 6, y: 2, walkable: false, image: "block_jpg" },
-            { x: 7, y: 2, walkable: true, image: "road_jpg" },
-            { x: 8, y: 2, walkable: true, image: "road_jpg" },
-            { x: 9, y: 2, walkable: true, image: "road_jpg" },
-            { x: 0, y: 3, walkable: true, image: "road_jpg" },
-            { x: 1, y: 3, walkable: true, image: "road_jpg" },
-            { x: 2, y: 3, walkable: true, image: "road_jpg" },
-            { x: 3, y: 3, walkable: true, image: "road_jpg" },
-            { x: 4, y: 3, walkable: true, image: "road_jpg" },
-            { x: 5, y: 3, walkable: true, image: "road_jpg" },
-            { x: 6, y: 3, walkable: false, image: "block_jpg" },
-            { x: 7, y: 3, walkable: true, image: "road_jpg" },
-            { x: 8, y: 3, walkable: true, image: "road_jpg" },
-            { x: 9, y: 3, walkable: true, image: "road_jpg" },
-            { x: 0, y: 4, walkable: true, image: "road_jpg" },
-            { x: 1, y: 4, walkable: true, image: "road_jpg" },
-            { x: 2, y: 4, walkable: true, image: "road_jpg" },
-            { x: 3, y: 4, walkable: true, image: "road_jpg" },
-            { x: 4, y: 4, walkable: true, image: "road_jpg" },
-            { x: 5, y: 4, walkable: true, image: "road_jpg" },
-            { x: 6, y: 4, walkable: false, image: "block_jpg" },
-            { x: 7, y: 4, walkable: true, image: "road_jpg" },
-            { x: 8, y: 4, walkable: true, image: "road_jpg" },
-            { x: 9, y: 4, walkable: true, image: "road_jpg" },
-            { x: 0, y: 5, walkable: true, image: "road_jpg" },
-            { x: 1, y: 5, walkable: true, image: "road_jpg" },
-            { x: 2, y: 5, walkable: false, image: "block_jpg" },
-            { x: 3, y: 5, walkable: true, image: "road_jpg" },
-            { x: 4, y: 5, walkable: true, image: "road_jpg" },
-            { x: 5, y: 5, walkable: true, image: "road_jpg" },
-            { x: 6, y: 5, walkable: false, image: "block_jpg" },
-            { x: 7, y: 5, walkable: true, image: "road_jpg" },
-            { x: 8, y: 5, walkable: true, image: "road_jpg" },
-            { x: 9, y: 5, walkable: true, image: "road_jpg" },
-            { x: 0, y: 6, walkable: true, image: "road_jpg" },
-            { x: 1, y: 6, walkable: true, image: "road_jpg" },
-            { x: 2, y: 6, walkable: false, image: "block_jpg" },
-            { x: 3, y: 6, walkable: false, image: "block_jpg" },
-            { x: 4, y: 6, walkable: false, image: "block_jpg" },
-            { x: 5, y: 6, walkable: false, image: "block_jpg" },
-            { x: 6, y: 6, walkable: false, image: "block_jpg" },
-            { x: 7, y: 6, walkable: true, image: "road_jpg" },
-            { x: 8, y: 6, walkable: true, image: "road_jpg" },
-            { x: 9, y: 6, walkable: true, image: "road_jpg" },
-            { x: 0, y: 7, walkable: true, image: "road_jpg" },
-            { x: 1, y: 7, walkable: true, image: "road_jpg" },
-            { x: 2, y: 7, walkable: true, image: "road_jpg" },
-            { x: 3, y: 7, walkable: true, image: "road_jpg" },
-            { x: 4, y: 7, walkable: true, image: "road_jpg" },
-            { x: 5, y: 7, walkable: true, image: "road_jpg" },
-            { x: 6, y: 7, walkable: false, image: "block_jpg" },
-            { x: 7, y: 7, walkable: true, image: "road_jpg" },
-            { x: 8, y: 7, walkable: true, image: "road_jpg" },
-            { x: 9, y: 7, walkable: true, image: "road_jpg" },
-            { x: 0, y: 8, walkable: true, image: "road_jpg" },
-            { x: 1, y: 8, walkable: true, image: "road_jpg" },
-            { x: 2, y: 8, walkable: true, image: "road_jpg" },
-            { x: 3, y: 8, walkable: true, image: "road_jpg" },
-            { x: 4, y: 8, walkable: true, image: "road_jpg" },
-            { x: 5, y: 8, walkable: true, image: "road_jpg" },
-            { x: 6, y: 8, walkable: false, image: "block_jpg" },
-            { x: 7, y: 8, walkable: true, image: "road_jpg" },
-            { x: 8, y: 8, walkable: true, image: "road_jpg" },
-            { x: 9, y: 8, walkable: true, image: "road_jpg" },
-            { x: 0, y: 9, walkable: true, image: "road_jpg" },
-            { x: 1, y: 9, walkable: true, image: "road_jpg" },
-            { x: 2, y: 9, walkable: true, image: "road_jpg" },
-            { x: 3, y: 9, walkable: true, image: "road_jpg" },
-            { x: 4, y: 9, walkable: true, image: "road_jpg" },
-            { x: 5, y: 9, walkable: true, image: "road_jpg" },
-            { x: 6, y: 9, walkable: true, image: "road_jpg" },
-            { x: 7, y: 9, walkable: true, image: "road_jpg" },
-            { x: 8, y: 9, walkable: true, image: "road_jpg" },
-            { x: 9, y: 9, walkable: true, image: "road_jpg" },
-        ];
-        for (var i = 0; i < this._config.length; i++) {
-            var tiledata = new TileData(this._config[i].walkable, this._config[i].image, this._config[i].x, this._config[i].y);
-            var bitmap = new Tile(tiledata);
-            this.addChild(bitmap);
+        this._user = user;
+        this._userPanel = userPanel;
+        var nowConfig = 0;
+        this._tileConfig = new Array();
+        for (var i = 0; i < 10; i++) {
+            for (var j = 0; j < 10; j++) {
+                if (i == 0 || j == 0 || j == 9 || i == 9 || ((i == 4 || i == 5) && j < 6) || ((i == 3 || i == 6) && j > 3 && j < 6)) {
+                    this._tileConfig[nowConfig] = new TileData(false, "block_jpg", i, j);
+                }
+                else {
+                    this._tileConfig[nowConfig] = new TileData(true, "road_jpg", i, j);
+                }
+                this._tiles[nowConfig] = new Tile(this._tileConfig[nowConfig]);
+                this._tiles[nowConfig].touchEnabled = true;
+                this.addChild(this._tiles[nowConfig]);
+                nowConfig++;
+            }
         }
-        this._player = new Player();
-        this.touchEnabled = true;
-        this._player.idle();
-        this.addChild(this._player);
-        this.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            _this._moveX = new Array();
-            _this._moveY = new Array();
-            _this.findPathForNode(e.stageX, e.stageY);
-            //console.log("point:x:" + e.stageX + "y:" + e.stageY);
-        }, this);
+        /*this._userSystem = new UserSystem();
+        this._user = this._userSystem.user;
+        this._user.defaultHero.player.idle();
+        this.addChild(this._user.defaultHero.player);
+        this.addChild(this._userSystem);*/
+        this._user.defaultHero.player.idle();
+        //this.addChild(this._user.defaultHero.player);
+        //TouchEvent
+        /*this.addEventListener(egret.TouchEvent.TOUCH_TAP, (e) => {
+            this.moveTo(e.stageX, e.stageY);
+        }, this);*/
     }
     var d = __define,c=TileMap,p=c.prototype;
+    p.moveTo = function (x, y) {
+        if (this._userPanel.isShowing == false) {
+            this._moveX = new Array();
+            this._moveY = new Array();
+            this.findPathForNode(x, y);
+        }
+        //console.log("point:x:" + x + "y:" + y);
+    };
+    d(p, "NPCs"
+        ,function () {
+            var npcs = [];
+            return npcs;
+        }
+    );
     p.findPathForNode = function (touchX, touchY) {
-        var playerX = Math.floor(this._player._body.x / Tile.TILE_SIZE);
-        var playerY = Math.floor(this._player._body.y / Tile.TILE_SIZE);
+        //var playerX: number = Math.floor(this._player._body.x / Tile.TILE_SIZE);
+        //var playerY: number = Math.floor(this._player._body.y / Tile.TILE_SIZE);
+        var playerX = Math.floor(this._user.defaultHero.player.body.x / Tile.TILE_SIZE);
+        var playerY = Math.floor(this._user.defaultHero.player.body.y / Tile.TILE_SIZE);
         var gridX = Math.floor(touchX / Tile.TILE_SIZE);
         var gridY = Math.floor(touchY / Tile.TILE_SIZE);
         var astar = new AStar();
-        var grid = new Grid(this._column, this._row, this._config);
+        var grid = new Grid(this._column, this._row, this._tileConfig);
         grid.setStartNode(playerX, playerY);
         grid.setEndNode(gridX, gridY);
         if (astar.findPath(grid)) {
@@ -143,7 +71,7 @@ var TileMap = (function (_super) {
                 this._moveX[i] = targetX;
                 this._moveY[i] = targetY;
             }
-            this._player.move(this._moveX, this._moveY);
+            this._user.defaultHero.player.move(this._moveX, this._moveY);
         }
     };
     return TileMap;

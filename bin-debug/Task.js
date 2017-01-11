@@ -90,6 +90,7 @@ interface Strategy{
 }*/
 var NPCTalkTaskCondition = (function () {
     function NPCTalkTaskCondition() {
+        this.type = "Talk";
     }
     var d = __define,c=NPCTalkTaskCondition,p=c.prototype;
     p.onAccept = function (task) {
@@ -109,7 +110,10 @@ var NPCTalkTaskCondition = (function () {
 }());
 egret.registerClass(NPCTalkTaskCondition,'NPCTalkTaskCondition',["TaskCondition"]);
 var KillMonsterTaskCondition = (function () {
-    function KillMonsterTaskCondition() {
+    function KillMonsterTaskCondition(monster) {
+        this.type = "Kill";
+        this.monsters = [];
+        this.monsters.push(monster);
     }
     var d = __define,c=KillMonsterTaskCondition,p=c.prototype;
     p.onAccept = function (task) {
@@ -120,28 +124,74 @@ var KillMonsterTaskCondition = (function () {
     return KillMonsterTaskCondition;
 }());
 egret.registerClass(KillMonsterTaskCondition,'KillMonsterTaskCondition',["TaskCondition"]);
-var MockKillMonsterBotton = (function (_super) {
-    __extends(MockKillMonsterBotton, _super);
-    function MockKillMonsterBotton() {
+var EquipmentGetTaskCondition = (function () {
+    function EquipmentGetTaskCondition() {
+        this.type = "Get";
+    }
+    var d = __define,c=EquipmentGetTaskCondition,p=c.prototype;
+    p.onAccept = function (task) {
+        task.setCurrent(task.getCurrent());
+    };
+    p.onSubmit = function (task) {
+    };
+    return EquipmentGetTaskCondition;
+}());
+egret.registerClass(EquipmentGetTaskCondition,'EquipmentGetTaskCondition',["TaskCondition"]);
+var EquipmentsGetTaskButton = (function (_super) {
+    __extends(EquipmentsGetTaskButton, _super);
+    function EquipmentsGetTaskButton(x, y) {
+        _super.call(this);
+        this._jewelBitmap = new egret.Bitmap();
+        this._jewelBitmap.texture = RES.getRes("jewel_png");
+        this._jewelBitmap.x = x;
+        this._jewelBitmap.y = y;
+        this.addChild(this._jewelBitmap);
+        this.alpha = 1;
+        this._jewelBitmap.touchEnabled = true;
+        //this._jewelBitmap.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+    }
+    var d = __define,c=EquipmentsGetTaskButton,p=c.prototype;
+    p.onChange = function () {
+    };
+    p.onClick = function () {
+        console.log(TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status);
+        if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status == TaskStatus.DURING && GameScene.getCurrentScene().userSystem.user.defaultHero.getFightPower() <= 125 && TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].condition.type == "Get") {
+            GameScene.getCurrentScene().userSystem.user.defaultHero.addEquipment(new Equipment("C", 100, 100, 100));
+            GameScene.getCurrentScene().userSystem.userPanel.updateUserinfo();
+            TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status = TaskStatus.CAN_SUBMIT;
+            this.alpha = 0;
+        }
+        console.log(TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status);
+        TaskService.getInstance().notify(TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()]);
+    };
+    return EquipmentsGetTaskButton;
+}(egret.DisplayObjectContainer));
+egret.registerClass(EquipmentsGetTaskButton,'EquipmentsGetTaskButton',["Observer"]);
+var KillMonsterButton = (function (_super) {
+    __extends(KillMonsterButton, _super);
+    function KillMonsterButton() {
         _super.call(this);
         this.subButton = new Button(50, 100, "Sub");
         this.subButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.subButton.touchEnabled = true;
         this.addChild(this.subButton);
     }
-    var d = __define,c=MockKillMonsterBotton,p=c.prototype;
+    var d = __define,c=KillMonsterButton,p=c.prototype;
     p.onClick = function () {
-        if (TaskService.getInstance().taskList["000"].status == TaskStatus.DURING && TaskService.getInstance().taskList["000"].total >= 0) {
-            TaskService.getInstance().taskList["000"].total--;
+        //>=1
+        if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total > 0) {
+            if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status == TaskStatus.DURING && TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total >= 0) {
+                TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total--;
+            }
+            if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total == 0) {
+                TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status = TaskStatus.CAN_SUBMIT;
+            }
+            TaskService.getInstance().notify(TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()]);
         }
-        if (TaskService.getInstance().taskList["000"].total == 0) {
-            TaskService.getInstance().taskList["000"].status = TaskStatus.CAN_SUBMIT;
-        }
-        TaskService.getInstance().notify(TaskService.getInstance().taskList["000"]);
     };
     p.onChange = function () {
     };
-    return MockKillMonsterBotton;
+    return KillMonsterButton;
 }(egret.DisplayObjectContainer));
-egret.registerClass(MockKillMonsterBotton,'MockKillMonsterBotton',["Observer"]);
+egret.registerClass(KillMonsterButton,'KillMonsterButton',["Observer"]);
 //# sourceMappingURL=Task.js.map

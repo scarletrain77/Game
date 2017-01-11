@@ -1,20 +1,17 @@
 // TypeScript file
 var Player = (function (_super) {
     __extends(Player, _super);
-    function Player() {
+    function Player(name) {
         _super.call(this);
-        //var data = RES.getRes("dog_json");
-        //var txtr = RES.getRes("dog_png");
-        //var mcFactory: egret.MovieClipDataFactory = new egret.MovieClipDataFactory(data, txtr);
-        //this._body = new egret.MovieClip(mcFactory.generateMovieClipData("dog"));
-        this._body = new Body("Idle");
+        this._name = name;
+        this._body = new Body(name, "Idle", 8, 8, 8);
         this._modeText = new egret.TextField();
         this._stateMachine = new StateMachine();
         this._modeText.y = 30;
         this._modeText.text = "Now is playing";
+        this.mode = this._body.mode;
         this.addChild(this._body);
         this.addChild(this._modeText);
-        //this._body.gotoAndPlay("idle", -1);
     }
     var d = __define,c=Player,p=c.prototype;
     p.move = function (targetX, targetY) {
@@ -23,6 +20,19 @@ var Player = (function (_super) {
     p.idle = function () {
         this._stateMachine.setState(new PlayerIdleState(this));
     };
+    p.attack = function () {
+        this._stateMachine.setState(new PlayerAttackState(this));
+    };
+    d(p, "modeText"
+        ,function () {
+            return this._modeText;
+        }
+    );
+    d(p, "body"
+        ,function () {
+            return this._body;
+        }
+    );
     return Player;
 }(egret.DisplayObjectContainer));
 egret.registerClass(Player,'Player');
@@ -65,21 +75,22 @@ var PlayerMoveState = (function (_super) {
     }
     var d = __define,c=PlayerMoveState,p=c.prototype;
     p.onEnter = function () {
-        this._player._modeText.text = "Now is moving";
-        //var body = new Body("Move");
-        //this._player._body.gotoAndPlay("run", -1);
-        this._player._body.reset();
-        this._player._body.mode = "Run";
-        var tw = egret.Tween.get(this._player._body);
+        this._player.modeText.text = "Move";
+        this._player.body.reset();
+        this._player.body.mode = "Run";
+        var tw = egret.Tween.get(this._player.body);
         for (var i = 0; i < this._targetX.length; i++) {
             if (i == this._targetX.length - 1) {
-                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 200).call(this._player.idle, this._player);
+                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 100).call(this._player.idle, this._player);
+                console.log("== - 1");
             }
             else {
-                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 200);
+                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 100);
+                console.log("else");
             }
         }
-        console.log("playerX:" + this._player._body.x + "playerY:" + this._player._body.y);
+    };
+    p.onExit = function () {
     };
     return PlayerMoveState;
 }(PlayerState));
@@ -93,11 +104,25 @@ var PlayerIdleState = (function (_super) {
     p.onEnter = function () {
         //this._player._body.gotoAndPlay("idle");
         // var body = new Body("Idle");
-        this._player._body.reset();
-        this._player._body.mode = "Idle";
-        this._player._modeText.text = "Now is idling";
+        this._player.body.reset();
+        this._player.body.mode = "Idle";
+        this._player.modeText.text = "Now is idling";
     };
     return PlayerIdleState;
 }(PlayerState));
 egret.registerClass(PlayerIdleState,'PlayerIdleState');
+var PlayerAttackState = (function (_super) {
+    __extends(PlayerAttackState, _super);
+    function PlayerAttackState() {
+        _super.apply(this, arguments);
+    }
+    var d = __define,c=PlayerAttackState,p=c.prototype;
+    p.onEnter = function () {
+        this._player.body.reset();
+        this._player.body.mode = "Attack";
+        this._player.modeText.text = "Attacking";
+    };
+    return PlayerAttackState;
+}(PlayerState));
+egret.registerClass(PlayerAttackState,'PlayerAttackState');
 //# sourceMappingURL=Player.js.map

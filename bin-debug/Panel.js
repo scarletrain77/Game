@@ -31,24 +31,24 @@ var TaskPanel = (function (_super) {
         this._taskTextList = [];
         this._statusTextList = {};
         this._blankHeight = 30;
-        var panelWidth = 600;
-        var panelHeight = panelWidth / 2;
+        var panelWidth = 640;
+        var panelHeight = 436;
         this.x = x;
         this.y = y;
         this._body = new egret.Shape();
-        this._body.graphics.beginFill(0xFFFF6F, 1);
+        this._body.graphics.beginFill(0x000000, 0.5);
         this._body.graphics.drawRect(0, 0, panelWidth, panelHeight);
         this._body.graphics.endFill();
         this.addChild(this._body);
         //两个表头
         this._taskText = new egret.TextField();
         this._taskText.text = "Task";
-        this._taskText.textColor = 0x000000;
+        this._taskText.textColor = 0xFFFFFF;
         this._taskText.x = 0;
         this._taskText.y = 0;
         this._statusText = new egret.TextField();
         this._statusText.text = "Status";
-        this._statusText.textColor = 0x000000;
+        this._statusText.textColor = 0xFFFFFF;
         this._statusText.x = panelWidth * 3 / 4;
         this._statusText.y = 0;
         this.addChild(this._taskText);
@@ -74,14 +74,14 @@ var TaskPanel = (function (_super) {
             var taskTemp = new egret.TextField();
             var statusTemp = new egret.TextField();
             taskTemp.text = TaskService.getInstance().getTask(i).desc;
-            taskTemp.textColor = 0x000000;
+            taskTemp.textColor = 0xFFFFFF;
             taskTemp.x = this._taskText.x;
             tempY += this._blankHeight;
             taskTemp.y = tempY;
             this._taskTextList.push(taskTemp);
             this.addChild(this._taskTextList[i]);
             statusTemp.text = TaskService.getInstance().getTask(i).status;
-            statusTemp.textColor = 0x000000;
+            statusTemp.textColor = 0xFFFFFF;
             statusTemp.x = this._statusText.x;
             statusTemp.y = tempY;
             this._statusTextList["00" + i] = statusTemp;
@@ -103,14 +103,15 @@ var DialogPanel = (function (_super) {
     __extends(DialogPanel, _super);
     function DialogPanel(taskString) {
         _super.call(this);
+        this.isShowing = false;
         var widthRec = 300;
         var heightRec = 200;
         this._body = new egret.Shape();
-        this._body.graphics.beginFill(0xFFF4C1, 1);
+        this._body.graphics.beginFill(0x000000, 0.5);
         this._body.graphics.drawRect(0, 0, widthRec, heightRec);
         this._body.graphics.endFill();
         this._button = new egret.Shape();
-        this._button.graphics.beginFill(0x66ccff, 1);
+        this._button.graphics.beginFill(0xFFF4C1, 1);
         this._button.graphics.drawRoundRect(widthRec / 4, heightRec * 3 / 4, widthRec / 2, heightRec / 4, 20, 20);
         this._button.graphics.endFill();
         this._buttonText = new egret.TextField();
@@ -120,7 +121,7 @@ var DialogPanel = (function (_super) {
         this._buttonText.y = heightRec * 3 / 4 + 10;
         this._taskText = new egret.TextField();
         this._taskText.text = taskString;
-        this._taskText.textColor = 0x000000;
+        this._taskText.textColor = 0xFFFFFF;
         this._taskText.x = 0;
         this._taskText.y = 0;
         this.alpha = 0;
@@ -135,10 +136,12 @@ var DialogPanel = (function (_super) {
     p.panelFadeIn = function () {
         var tw = egret.Tween.get(this);
         tw.to({ "alpha": 1 }, 500);
+        this.isShowing = true;
     };
     p.panelFadeOut = function () {
         var tw = egret.Tween.get(this);
         tw.to({ "alpha": 0 }, 500);
+        this.isShowing = false;
     };
     p.onClick = function () {
         this.panelFadeOut();

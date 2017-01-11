@@ -5,7 +5,7 @@ var NPC = (function (_super) {
         this._id = id;
         this.x = x;
         this.y = y;
-        this._body = new PlayerBody(bitmap, frameAll);
+        this._body = new NPCBody(bitmap, frameAll);
         this._dialog = new DialogPanel(dialog);
         this._dialog.x = -this._body.width / 8;
         this._dialog.y = -this._body.height * 3 / 4;
@@ -21,14 +21,24 @@ var NPC = (function (_super) {
         this.addChild(this._body);
         this.addChild(this._emoji);
         this.addChild(this._dialog);
-        this.touchEnabled = true;
-        this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onClick, this);
+        this._body.touchEnabled = true;
+        /*this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, (e)=>{
+            this.onClick();
+        }, this);*/
         this.init();
     }
     var d = __define,c=NPC,p=c.prototype;
     p.onChange = function (task) {
         console.log('NPC on Change' + task.name);
         this.changeEmojiState(task);
+    };
+    d(p, "body"
+        ,function () {
+            return this._body;
+        }
+    );
+    p.getDialogPanelState = function () {
+        return this._dialog.isShowing;
     };
     p.changeEmojiState = function (task) {
         if (this._id == task.fromNpcId) {
@@ -93,13 +103,13 @@ var NPC = (function (_super) {
     p.emojiFadeIn = function () {
         var tw = egret.Tween.get(this._emoji);
         if (this._emoji.alpha == 0) {
-            tw.to({ "alpha": 1 }, 500);
+            tw.to({ "alpha": 1 }, 100);
         }
     };
     p.emojiFadeOut = function () {
         var tw = egret.Tween.get(this._emoji);
         if (this._emoji.alpha == 1) {
-            tw.to({ "alpha": 0 }, 500);
+            tw.to({ "alpha": 0 }, 100);
         }
     };
     p.setEmojiTexture = function () {
@@ -118,8 +128,9 @@ var NPC = (function (_super) {
         else if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status == TaskStatus.CAN_SUBMIT && this._id == TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].toNpcId) {
             this._dialog.panelFadeIn();
         }
-        if (TaskService.getInstance().taskList["001"].status == TaskStatus.DURING && this._id == TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].fromNpcId) {
-            TaskService.getInstance().taskList["001"].status = TaskStatus.CAN_SUBMIT;
+        //special task 
+        if (TaskService.getInstance().taskList["000"].status == TaskStatus.DURING && this._id == TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].fromNpcId) {
+            TaskService.getInstance().taskList["000"].status = TaskStatus.CAN_SUBMIT;
         }
         TaskService.getInstance().notify(TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()]);
     };

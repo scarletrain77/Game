@@ -5,9 +5,11 @@ var WalkCommand = (function () {
     }
     var d = __define,c=WalkCommand,p=c.prototype;
     p.execute = function (callback) {
-        GameScene.getCurrentScene().moveTo(this.x, this.y, function () {
-            callback();
-        });
+        if (GameScene.getCurrentScene().userSystem.userPanel.isShowing == false) {
+            GameScene.getCurrentScene().moveTo(this.x, this.y, function () {
+                callback();
+            });
+        }
     };
     p.cancel = function (callback) {
         GameScene.getCurrentScene().stopMove(function () {
@@ -26,14 +28,14 @@ var FightCommand = (function () {
     }
     var d = __define,c=FightCommand,p=c.prototype;
     p.execute = function (callback) {
-        var _this = this;
-        console.log("开始战斗");
-        egret.setTimeout(function () {
-            if (!_this._hasBeenCancelled) {
-                console.log("结束战斗");
+        /*console.log("开始战斗")
+        egret.setTimeout(() => {
+            if (!this._hasBeenCancelled) {
+                console.log("结束战斗")
                 callback();
             }
-        }, this, 500);
+        }, this, 500)*/
+        GameScene.getCurrentScene().fight(function () { callback(); });
     };
     p.cancel = function (callback) {
         console.log("脱离战斗");
@@ -45,16 +47,39 @@ var FightCommand = (function () {
     return FightCommand;
 }());
 egret.registerClass(FightCommand,'FightCommand',["Command"]);
+var EquipmentCommand = (function () {
+    function EquipmentCommand() {
+    }
+    var d = __define,c=EquipmentCommand,p=c.prototype;
+    p.execute = function (callback) {
+        //console.log("打开对话框")
+        GameScene.getCurrentScene().getEquipment(function () {
+            callback();
+        });
+        /*egret.setTimeout(function () {
+            console.log("结束对话")
+            callback();
+        }, this, 500)*/
+    };
+    p.cancel = function (callback) {
+        console.log("关闭对话框");
+    };
+    return EquipmentCommand;
+}());
+egret.registerClass(EquipmentCommand,'EquipmentCommand',["Command"]);
 var TalkCommand = (function () {
     function TalkCommand() {
     }
     var d = __define,c=TalkCommand,p=c.prototype;
     p.execute = function (callback) {
-        console.log("打开对话框");
-        egret.setTimeout(function () {
-            console.log("结束对话");
+        //console.log("打开对话框")
+        GameScene.getCurrentScene().beginTalk(function () {
             callback();
-        }, this, 500);
+        });
+        /*egret.setTimeout(function () {
+            console.log("结束对话")
+            callback();
+        }, this, 500)*/
     };
     p.cancel = function (callback) {
         console.log("关闭对话框");

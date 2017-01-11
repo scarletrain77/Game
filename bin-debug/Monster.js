@@ -1,16 +1,37 @@
 var Monster = (function (_super) {
     __extends(Monster, _super);
-    // private _body:egret.Shape;
-    function Monster() {
+    function Monster(x, y) {
         _super.call(this);
+        this._hp = 100;
+        this.x = x;
+        this.y = y;
         this._type = "normal";
+        this._body = new NPCBody("QB", 11);
         Monster._id++;
+        this._body.touchEnabled = true;
+        this.addChild(this._body);
     }
     var d = __define,c=Monster,p=c.prototype;
+    p.onAccept = function () { };
+    p.onChange = function () { };
+    p.onClick = function () {
+        if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total > 0) {
+            console.log("click, total>0");
+            if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status == TaskStatus.DURING && TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total >= 0 && GameScene.getCurrentScene().userSystem.user.defaultHero.getFightPower() > this._hp) {
+                TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total--;
+                this.alpha = 0;
+                console.log("total" + TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total);
+            }
+            if (TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].total == 0) {
+                TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()].status = TaskStatus.CAN_SUBMIT;
+            }
+            TaskService.getInstance().notify(TaskService.getInstance().taskList[TaskService.getInstance().getCurrentId()]);
+        }
+    };
     Monster._id = 0;
     return Monster;
 }(egret.DisplayObjectContainer));
-egret.registerClass(Monster,'Monster');
+egret.registerClass(Monster,'Monster',["Observer"]);
 var Monsters = (function (_super) {
     __extends(Monsters, _super);
     function Monsters(monsters, taskNumberString) {

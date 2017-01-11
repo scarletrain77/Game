@@ -1,22 +1,24 @@
 // TypeScript file
 class Player extends egret.DisplayObjectContainer {
-    _name:string;
-    _modeText: egret.TextField;
-    _body: Body;
-    _stateMachine: StateMachine;
-
+    private _name: string;
+    private _modeText: egret.TextField;
+    private _body: Body;
+    private _stateMachine: StateMachine;
+    public mode: string;
 
     constructor(name: string) {
         super();
 
         this._name = name;
 
-        this._body = new Body(name, "Idle", 8, 8);
+        this._body = new Body(name, "Idle", 8, 8, 8);
         this._modeText = new egret.TextField();
         this._stateMachine = new StateMachine();
 
         this._modeText.y = 30;
         this._modeText.text = "Now is playing";
+
+        this.mode = this._body.mode;
 
         this.addChild(this._body);
         this.addChild(this._modeText);
@@ -29,6 +31,18 @@ class Player extends egret.DisplayObjectContainer {
 
     idle() {
         this._stateMachine.setState(new PlayerIdleState(this));
+    }
+
+    attack() {
+        this._stateMachine.setState(new PlayerAttackState(this));
+    }
+
+    public get modeText(): egret.TextField {
+        return this._modeText;
+    }
+
+    public get body(): Body {
+        return this._body;
     }
 }
 
@@ -76,20 +90,23 @@ class PlayerMoveState extends PlayerState {
         this._targetY = targetY;
     }
     onEnter() {
-        this._player._modeText.text = "Now is moving";
-        //var body = new Body("Move");
-        //this._player._body.gotoAndPlay("run", -1);
-        this._player._body.reset();
-        this._player._body.mode = "Run";
-        var tw = egret.Tween.get(this._player._body);
+        this._player.modeText.text = "Move";
+        this._player.body.reset();
+        this._player.body.mode = "Run";
+        var tw = egret.Tween.get(this._player.body);
         for (var i = 0; i < this._targetX.length; i++) {
             if (i == this._targetX.length - 1) {
                 tw.to({ x: this._targetX[i], y: this._targetY[i] }, 100).call(this._player.idle, this._player);
+                console.log("== - 1")
             } else {
                 tw.to({ x: this._targetX[i], y: this._targetY[i] }, 100);
+                console.log("else");
             }
         }
-        //console.log("playerX:" + this._player._body.x + "playerY:" + this._player._body.y);
+    }
+
+    onExit() {
+
     }
 }
 
@@ -98,16 +115,16 @@ class PlayerIdleState extends PlayerState {
     onEnter() {
         //this._player._body.gotoAndPlay("idle");
         // var body = new Body("Idle");
-        this._player._body.reset();
-        this._player._body.mode = "Idle";
-        this._player._modeText.text = "Now is idling";
+        this._player.body.reset();
+        this._player.body.mode = "Idle";
+        this._player.modeText.text = "Now is idling";
     }
 }
 
-class PlayerAttackState extends PlayerState{
-    onEnter(){
-        this._player._body.reset();
-        this._player._body.mode = "Attack";
-        this._player._modeText.text = "Attacking";
+class PlayerAttackState extends PlayerState {
+    onEnter() {
+        this._player.body.reset();
+        this._player.body.mode = "Attack";
+        this._player.modeText.text = "Attacking";
     }
 }

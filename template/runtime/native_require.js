@@ -20,11 +20,15 @@ var game_file_list = [
 	"bin-debug/NodeNew.js",
 	"bin-debug/NPC.js",
 	"bin-debug/Observer.js",
+	"bin-debug/Others.js",
 	"bin-debug/Panel.js",
 	"bin-debug/Player.js",
 	"bin-debug/Task.js",
 	"bin-debug/TaskService.js",
+	"bin-debug/TestConnection.js",
 	"bin-debug/TileMap.js",
+	"bin-debug/User.js",
+	"bin-debug/UserPanel.js",
 	//----auto game_file_list end----
 ];
 
